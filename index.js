@@ -269,11 +269,11 @@ function setupRecruiterScheduler(modal) {
     const time = activeTimeBtn ? activeTimeBtn.getAttribute('data-time') : '10:00 AM';
 
     const submitBtn = form.querySelector('#scheduler-submit-btn');
-    const originalBtnText = submitBtn ? submitBtn.textContent : 'Confirm Reservation';
+    const originalBtnText = submitBtn ? submitBtn.textContent : 'Confirm Interview';
 
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Securing Slot...';
+      submitBtn.textContent = 'Scheduling Interview...';
     }
     if (status) {
       status.className = 'scheduler-status';
