@@ -2,11 +2,11 @@
 
 Welcome to the repository for my professional portfolio website! This project showcases my engineering background, featured builds, technical skill stack, certifications, and leadership milestones.
 
-👉 **Live Site**: Deployed and accessible on Vercel/GitHub Pages (or open locally).
+**Live Site**: Deployed and accessible on Vercel/GitHub Pages (or open locally).
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
 * **Interactive AI Chatbot (Dax)**: An embedded portfolio assistant designed to answer recruiter questions about my background, project builds, and technical domains.
 * **Featured Projects Grid**: Detailed slider showcase for production-grade builds, network utilities, and applications—complete with architecture diagrams, design decisions, and expandable deep dives.
@@ -17,7 +17,7 @@ Welcome to the repository for my professional portfolio website! This project sh
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 * **Structure**: Semantic HTML5 (A11y Compliant)
 * **Styling**: Vanilla CSS3 (CSS Grid, Flexbox, CSS Custom Properties, and variables-based Dark/Light theme toggle)
@@ -27,7 +27,7 @@ Welcome to the repository for my professional portfolio website! This project sh
 
 ---
 
-## 💻 Local Setup & Execution
+## Local Setup & Execution
 
 Since the portfolio is built on a clean, modern, static vanilla stack, you do not need to install complex build frameworks to run it locally.
 
