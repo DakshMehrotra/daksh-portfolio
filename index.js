@@ -380,6 +380,10 @@ function setupDaxChatbot() {
     contact: "You can reach Daksh via email at **mehrotradaksh2005@gmail.com** or call him at **+91 70070 46198**.\n\nAlternatively, you can connect on [LinkedIn](https://www.linkedin.com/in/mehrotradaksh/) or explore his repositories on [GitHub](https://github.com/DakshMehrotra).",
     linkedin: "You can view Daksh's professional network, accomplishments, and updates on his LinkedIn profile here: [LinkedIn Profile](https://www.linkedin.com/in/mehrotradaksh/).",
     github: "Check out Daksh's open-source projects, contributions, and code repositories on his GitHub profile here: [GitHub Profile](https://github.com/DakshMehrotra).",
+    acm: "Daksh has held several leadership roles in the **UPES ACM Student Chapter**:\n- **Executive Board Member** (May 2026 - Present): Advising on strategic initiatives, tech community events, and collaborative engineering assemblies.\n- **Secretary** (May 2025 - May 2026): Managed operational frameworks, workshop schedules, and cross-university technology symposiums.\n- **Event Head (ACM-W)** (May 2024 - May 2025): Led planning and implementation of workshops, expert speaker panels, and diversity in engineering hackathons.",
+    placement: "Daksh is a **Student Placement Representative** for the **UPES Placement Cell** (May 2026 - Present). He coordinates between corporate recruiters and student candidates, driving campus placement logistics and candidate alignments.",
+    gamejam: "Daksh is the **Winner** of the **UPES Global Game Jam (GGJ) 2024** - recognized for building winning games in a high-intensity, 48-hour development challenge.",
+    ibm: "Daksh was the national **First Runner Up** at **IBM ICE Day 2024** for his design and implementation of high-performance cloud application architectures.",
     recognition: "Daksh has a strong record of leadership and achievements:\n\n1. **Executive Board Member** & **Former Secretary** (UPES ACM Student Chapter)\n2. **Student Placement Representative** (UPES Placement Cell)\n3. **Patent Co-Inventor** (Nov 2025 - Hardware Systems utility patent)\n4. **First Runner Up** (IBM ICE Day 2024 - high-performance cloud architectures)\n5. **Winner** (UPES Global Game Jam 2024 - 48-hour game jam champion)\n6. **Event Head** (UPES ACM-W Student Chapter)\n7. **Campus Ambassador** (Community Relations)",
     certifications: "Daksh holds several professional AWS cloud certifications:\n\n1. **Working with Amazon ECS** (AWS - Jun 2026)\n2. **Deploying a CI/CD Pipeline with AWS CDK** (AWS - Jun 2026)\n3. **Amazon ECS Getting Started** (AWS - May 2026)",
     resume: "You can download Daksh's latest professional resume here: [Download Resume](resume.pdf)"
@@ -407,22 +411,37 @@ function setupDaxChatbot() {
       netra: ['netra', 'traffic', 'gnn', 'graph', 'signal'],
       crm: ['crm', 'form', 'builder', 'workflow', 'ocr', 'tesseract'],
       raksha: ['rakshaka', 'intrusion', 'cyber', 'ids', 'intrusion detection', 'ml', 'machine learning', 'models'],
-      patent: ['patent', 'hardware', 'invention', 'inventor', 'co-inventor'],
+      patent: ['patent', 'hardware', 'invention', 'inventor', 'co-inventor', 'co-invent', 'invent'],
       internships: ['intern', 'internship', 'experience', 'work', 'job', 'xebia', 'groove', 'innoventory', 'iit', 'fouses', 'my trick'],
       education: ['education', 'college', 'upes', 'cgpa', 'grade', 'academics', 'university', 'b.tech', 'cse'],
       skills: ['skill', 'skills', 'stack', 'tech', 'languages', 'c++', 'python', 'sql', 'docker', 'aws'],
       contact: ['contact', 'email', 'phone', 'number', 'gmail', 'call', 'message', 'write'],
-      recognition: ['recognition', 'achievements', 'awards', 'accolades', 'timeline', 'board', 'acm', 'placement', 'ggj', 'game jam', 'ibm', 'runner', 'winner', 'ambassador', 'secretary'],
+      acm: ['acm', 'acm-w', 'board', 'secretary', 'event head'],
+      placement: ['placement', 'cell', 'representative', 'placement rep'],
+      gamejam: ['game jam', 'global game jam', 'ggj', 'game development', 'jam'],
+      ibm: ['ibm', 'ice day', 'ibm ice'],
+      recognition: ['recognition', 'achievements', 'awards', 'accolades', 'timeline', 'runner', 'winner', 'ambassador'],
       certifications: ['certifications', 'certification', 'cert', 'certs', 'aws', 'credential', 'credentials', 'ecs', 'cdk'],
       resume: ['resume', 'cv', 'download', 'pdf']
     };
 
-    // Score each category based on keyword matches
+    // Score each category based on keyword matches (with word boundary prioritization)
     for (const [key, list] of Object.entries(keywords)) {
       let score = 0;
       list.forEach(kw => {
-        if (cleaned.includes(kw)) {
-          score += 1;
+        if (kw.includes(' ')) {
+          // Phrase match
+          if (cleaned.includes(kw)) {
+            score += 2.0;
+          }
+        } else {
+          // Word match
+          const words = cleaned.split(/[^a-z0-9+#\-]/);
+          if (words.includes(kw)) {
+            score += 1.5;
+          } else if (cleaned.includes(kw)) {
+            score += 0.5;
+          }
         }
       });
       if (score > maxScore) {
