@@ -193,6 +193,10 @@ function setupRecruiterScheduler(modal) {
       defaultView.style.display = 'block';
       form.reset();
       setupDefaults();
+      const customGroup = modal.querySelector('#sched-custom-focus-group');
+      const customInput = modal.querySelector('#sched-custom-focus');
+      if (customGroup) customGroup.style.display = 'none';
+      if (customInput) customInput.required = false;
       if (status) {
         status.className = 'scheduler-status';
         status.textContent = '';
@@ -203,11 +207,26 @@ function setupRecruiterScheduler(modal) {
   // Type Selector pills toggle
   if (typeSelector) {
     const typePills = typeSelector.querySelectorAll('.type-pill');
+    const customGroup = modal.querySelector('#sched-custom-focus-group');
+    const customInput = modal.querySelector('#sched-custom-focus');
+
     typePills.forEach(pill => {
       pill.addEventListener('click', (ev) => {
         ev.preventDefault();
         typePills.forEach(p => p.classList.remove('active'));
         pill.classList.add('active');
+
+        const focusType = pill.getAttribute('data-type');
+        if (focusType === 'Custom') {
+          if (customGroup) customGroup.style.display = 'block';
+          if (customInput) {
+            customInput.required = true;
+            customInput.focus();
+          }
+        } else {
+          if (customGroup) customGroup.style.display = 'none';
+          if (customInput) customInput.required = false;
+        }
       });
     });
   }
@@ -222,7 +241,11 @@ function setupRecruiterScheduler(modal) {
     const org = orgInput ? orgInput.value : '';
     
     const activeTypeBtn = typeSelector ? typeSelector.querySelector('.type-pill.active') : null;
-    const focus = activeTypeBtn ? activeTypeBtn.getAttribute('data-type') : 'Technical';
+    let focus = activeTypeBtn ? activeTypeBtn.getAttribute('data-type') : 'Technical';
+    if (focus === 'Custom') {
+      const customInput = modal.querySelector('#sched-custom-focus');
+      focus = customInput && customInput.value ? `Custom: ${customInput.value}` : 'Custom';
+    }
     
     const rawDate = dateInput ? dateInput.value : '';
     const rawTime = timeInput ? timeInput.value : '';
