@@ -366,30 +366,121 @@ function setupDaxChatbot() {
     });
   }
 
-  // Bot Database responses
-  const daxDatabase = {
-    hi: "Hi! I'm Dax, Daksh's portfolio AI assistant. I can tell you about his projects, engineering internships, education, skills, certifications, recognition milestones, and details about his hardware patent. Feel free to ask anything!",
-    projects: "Daksh has built three main featured projects: **NETRA** (a GNN emergency traffic response perception system), **CRM Form Builder** (a full-stack React 19 / Express 5 workflow intelligence platform), and **Rakshaka** (a machine learning network intrusion detection pipeline). He also co-invented a patent for an AI Hardware Recommendation System.",
-    netra: "**NETRA** (Next-gen Emergency-aware Traffic Response Architecture) is a smart traffic perception project. It uses YOLOv8 for vehicle/emergency vehicle detection, NetworkX for road network modeling as a graph, and GNNs for adaptive traffic light control. It reduces emergency response times by prioritizing signal triggers.",
-    crm: "**CRM Form Builder** is a workflow intelligence platform built with React 19, TypeScript, Express 5, and SQLite 3. It features a drag-and-drop form canvas, a visual rule node graph, in-browser document OCR using Tesseract.js (WebAssembly), webcam KYC photo capture, drawn signatures, role-based access control, and automated lead routing.",
-    raksha: "**Rakshaka** is an end-to-end machine learning-powered network intrusion detection system (IDS). It normalizes connection telemetry logs, resolves class imbalances, and trains/ranks 7 models (Logistic Regression, Decision Trees, Random Forests, XGBoost, SVM, KNN, and Gradient Boosting) to achieve maximum recall and block threat vectors.",
-    patent: "Daksh co-invented a **Hardware-Related Utility Patent** (co-inventor - Nov 2025) for an AI Hardware Recommendation System. The system models component compatibilities and performance profiles dynamically to advise on optimal hardware assemblies.",
-    internships: "Daksh has completed several engineering internships:\n\n1. **Xebia** (Project Intern, Jun 2026 - Present): Working on **Agentic AI** frameworks and integrating autonomous AI models.\n\n2. **Groove Innovations** (Data Engineering Intern, May 2026 - Present): Developed and successfully deployed a dynamic **CRM form builder** for the company's internal CRM workflows.\n\n3. **Innoventory Solutions** (Software Development Intern, Sep 2025 - Mar 2026): Led testing, usability analysis, and patent coordination.\n\n4. **Fouses** (Software Development Intern, Jul 2025 - Aug 2025): Streamlined client communications and contract workflows.\n\n5. **My Trick International** (Software Intern, Jun 2025 - Jul 2025): Assisted in building custom front-end features.\n\n6. **IIT Roorkee** (R&D Intern, May 2025 - Jun 2025): Researched memristors for brain-inspired neuromorphic computing hardware.",
-    education: "Daksh is pursuing a B.Tech in Computer Science and Engineering (with Cloud Computing specialization) at **UPES Dehradun**. He has an **8.71 CGPA** (Aug 2023 - Present).",
-    skills: "Daksh's core stack includes C, C++, Python, and SQL. On the cloud and DevOps side, he works with AWS, Docker, GitHub Actions, and Git/GitLab. He's also proficient in PyTorch, NetworkX, and testing methodologies.",
-    contact: "You can reach Daksh via email at **mehrotradaksh2005@gmail.com** or call him at **+91 70070 46198**.\n\nAlternatively, you can connect on [LinkedIn](https://www.linkedin.com/in/mehrotradaksh/) or explore his repositories on [GitHub](https://github.com/DakshMehrotra).",
-    linkedin: "You can view Daksh's professional network, accomplishments, and updates on his LinkedIn profile here: [LinkedIn Profile](https://www.linkedin.com/in/mehrotradaksh/).",
-    github: "Check out Daksh's open-source projects, contributions, and code repositories on his GitHub profile here: [GitHub Profile](https://github.com/DakshMehrotra).",
-    acm: "Daksh has held several leadership roles in the **UPES ACM Student Chapter**:\n- **Executive Board Member** (May 2026 - Present): Advising on strategic initiatives, tech community events, and collaborative engineering assemblies.\n- **Secretary** (May 2025 - May 2026): Managed operational frameworks, workshop schedules, and cross-university technology symposiums.\n- **Event Head (ACM-W)** (May 2024 - May 2025): Led planning and implementation of workshops, expert speaker panels, and diversity in engineering hackathons.",
-    placement: "Daksh is a **Student Placement Representative** for the **UPES Placement Cell** (May 2026 - Present). He coordinates between corporate recruiters and student candidates, driving campus placement logistics and candidate alignments.",
-    gamejam: "Daksh is the **Winner** of the **UPES Global Game Jam (GGJ) 2024** - recognized for building winning games in a high-intensity, 48-hour development challenge.",
-    ibm: "Daksh was the national **First Runner Up** at **IBM ICE Day 2024** for his design and implementation of high-performance cloud application architectures.",
-    recognition: "Daksh has a strong record of leadership and achievements:\n\n1. **Executive Board Member** & **Former Secretary** (UPES ACM Student Chapter)\n2. **Student Placement Representative** (UPES Placement Cell)\n3. **Patent Co-Inventor** (Nov 2025 - Hardware Systems utility patent)\n4. **First Runner Up** (IBM ICE Day 2024 - high-performance cloud architectures)\n5. **Winner** (UPES Global Game Jam 2024 - 48-hour game jam champion)\n6. **Event Head** (UPES ACM-W Student Chapter)\n7. **Campus Ambassador** (Community Relations)",
-    certifications: "Daksh holds several professional AWS cloud certifications:\n\n1. **Working with Amazon ECS** (AWS - Jun 2026)\n2. **Deploying a CI/CD Pipeline with AWS CDK** (AWS - Jun 2026)\n3. **Amazon ECS Getting Started** (AWS - May 2026)",
-    resume: "You can download Daksh's latest professional resume here: [Download Resume](resume.pdf)"
-  };
+  // Bot Database responses (structured corpus for full text indexing & semantic search)
+  const portfolioData = [
+    {
+      category: "Executive Board Member (UPES ACM)",
+      keywords: ["acm", "board", "executive", "board member", "upes acm"],
+      content: "Daksh is an Executive Board Member at the UPES ACM Student Chapter (May 2026 - Present). In this role, he advises on strategic initiatives, tech community events, and collaborative engineering assemblies."
+    },
+    {
+      category: "Secretary (UPES ACM)",
+      keywords: ["secretary", "acm secretary"],
+      content: "Daksh was the Secretary of the UPES ACM Student Chapter (May 2025 - May 2026). He managed operational frameworks, workshop schedules, and cross-university technology symposiums."
+    },
+    {
+      category: "Student Placement Representative",
+      keywords: ["placement", "cell", "representative", "placement rep", "placement cell"],
+      content: "Daksh is a Student Placement Representative at the UPES Placement Cell (May 2026 - Present). He coordinates between corporate recruiters and student candidates, driving campus placement logistics."
+    },
+    {
+      category: "Campus Ambassador",
+      keywords: ["ambassador", "campus ambassador", "relations"],
+      content: "Daksh was a Campus Ambassador for Community Relations (Aug 2025 - Jan 2026). In this role, he fostered collaborative technical learning and represented external tech initiatives on campus."
+    },
+    {
+      category: "Patent Co-Inventor",
+      keywords: ["patent", "hardware", "inventor", "co-inventor", "utility patent", "filing", "recommendation", "co-invent", "invent"],
+      content: "Daksh is a Patent Co-Inventor for a hardware-related utility patent titled **AI Hardware Recommendation System** (filed Nov 2025). The system dynamically models component compatibilities and performance profiles to advise on optimal hardware assemblies."
+    },
+    {
+      category: "Event Head (ACM-W)",
+      keywords: ["event head", "acm-w", "workshops", "hackathons"],
+      content: "Daksh was the Event Head for the UPES ACM-W Student Chapter (May 2024 - May 2025). He led the planning and implementation of workshops, expert speaker panels, and diversity in engineering hackathons."
+    },
+    {
+      category: "IBM ICE Day Runner Up",
+      keywords: ["ibm", "ice day", "runner up", "first runner up", "cloud architectures"],
+      content: "Daksh was the First Runner Up at **IBM ICE Day 2024**, recognized at the national level for designing high-performance cloud application architectures."
+    },
+    {
+      category: "UPES Global Game Jam Winner",
+      keywords: ["ggj", "game jam", "global game jam", "winner", "game development"],
+      content: "Daksh won the **UPES Global Game Jam (GGJ) 2024**, recognized for championing a 48-hour game development competition."
+    },
+    {
+      category: "Xebia Internship",
+      keywords: ["xebia", "agentic ai", "llm", "frameworks", "autonomous"],
+      content: "Daksh is a Project Intern at **Xebia** (Jun 2026 - Present), where he is working on Agentic AI frameworks and integrating autonomous AI models."
+    },
+    {
+      category: "Groove Innovations Internship",
+      keywords: ["groove", "groove innovations", "data engineering", "crm form builder", "deployed"],
+      content: "Daksh is a Data Engineering Intern at **Groove Innovations** (May 2026 - Present). He developed and successfully deployed a dynamic CRM form builder for the company's internal CRM workflows."
+    },
+    {
+      category: "Innoventory Solutions Internship",
+      keywords: ["innoventory", "software development intern", "testing", "usability", "patent coordination"],
+      content: "Daksh was a Software Development Intern at **Innoventory Solutions** (Sep 2025 - Mar 2026). He led testing, usability analysis, and patent coordination."
+    },
+    {
+      category: "Fouses Internship",
+      keywords: ["fouses", "intern", "communications", "workflows"],
+      content: "Daksh was a Software Development Intern at **Fouses** (Jul 2025 - Aug 2025). He streamlined client communications and contract workflows."
+    },
+    {
+      category: "My Trick International Internship",
+      keywords: ["my trick", "front-end", "ui", "features"],
+      content: "Daksh was a Software Intern at **My Trick International** (Jun 2025 - Jul 2025). He assisted in building custom front-end features."
+    },
+    {
+      category: "IIT Roorkee Internship",
+      keywords: ["iit roorkee", "iit", "roorkee", "memristors", "neuromorphic", "computing", "brain-inspired"],
+      content: "Daksh was an R&D Intern at **IIT Roorkee** (May 2025 - Jun 2025). He researched memristors for brain-inspired neuromorphic computing hardware."
+    },
+    {
+      category: "NETRA Project",
+      keywords: ["netra", "traffic", "gnn", "graph", "signal", "yolov8", "networkx", "emergency"],
+      content: "**NETRA** (Next-gen Emergency-aware Traffic Response Architecture) is a smart traffic perception system. It uses YOLOv8 for vehicle/emergency vehicle detection, NetworkX for road network modeling as a graph, and GNNs for adaptive traffic light control. It reduces emergency response times by prioritizing signal triggers."
+    },
+    {
+      category: "CRM Form Builder Project",
+      keywords: ["crm form builder", "react 19", "ocr", "kyc", "tesseract.js", "signatures", "lead routing"],
+      content: "**CRM Form Builder** is a workflow intelligence platform built with React 19, TypeScript, Express 5, and SQLite 3. It features a drag-and-drop form canvas, a visual rule node graph, in-browser document OCR using Tesseract.js (WebAssembly), webcam KYC photo capture, drawn signatures, role-based access control, and automated lead routing."
+    },
+    {
+      category: "Rakshaka Project",
+      keywords: ["rakshaka", "intrusion", "cyber", "ids", "telemetry", "xgboost", "gradient boosting"],
+      content: "**Rakshaka** is an end-to-end machine learning-powered network intrusion detection system (IDS). It normalizes connection telemetry logs, resolves class imbalances, and trains/ranks 7 models (Logistic Regression, Decision Trees, Random Forests, XGBoost, SVM, KNN, and Gradient Boosting) to achieve maximum recall and block threat vectors."
+    },
+    {
+      category: "Education",
+      keywords: ["education", "college", "upes", "cgpa", "grade", "academics", "university", "b.tech", "cse", "cloud computing"],
+      content: "Daksh is pursuing a B.Tech in Computer Science and Engineering (with Cloud Computing specialization) at **UPES Dehradun**. He has an **8.71 CGPA** (Aug 2023 - Present)."
+    },
+    {
+      category: "Skills",
+      keywords: ["skill", "skills", "stack", "tech", "languages", "c++", "python", "sql", "docker", "aws", "pytorch", "networkx"],
+      content: "Daksh's core stack includes C, C++, Python, and SQL. On the cloud and DevOps side, he works with AWS, Docker, GitHub Actions, and Git/GitLab. He's also proficient in PyTorch, NetworkX, and testing methodologies."
+    },
+    {
+      category: "Certifications",
+      keywords: ["certifications", "certification", "cert", "certs", "aws", "credential", "credentials", "ecs", "cdk"],
+      content: "Daksh holds several professional AWS cloud certifications:\n1. **Working with Amazon ECS** (AWS - Jun 2026)\n2. **Deploying a CI/CD Pipeline with AWS CDK** (AWS - Jun 2026)\n3. **Amazon ECS Getting Started** (AWS - May 2026)"
+    },
+    {
+      category: "Resume",
+      keywords: ["resume", "cv", "download", "pdf"],
+      content: "You can download Daksh's latest professional resume here: [Download Resume](resume.pdf)"
+    },
+    {
+      category: "Contact Info",
+      keywords: ["contact", "email", "phone", "number", "gmail", "call", "message", "write", "location", "address", "reach"],
+      content: "You can reach Daksh via email at **mehrotradaksh2005@gmail.com** or call him at **+91 70070 46198**.\n\nAlternatively, you can connect on [LinkedIn](https://www.linkedin.com/in/mehrotradaksh/) or explore his repositories on [GitHub](https://github.com/DakshMehrotra)."
+    }
+  ];
 
-  // Process user input
+  // Process user input using structured search scorer
   const processInput = (text) => {
     const cleaned = text.toLowerCase().trim();
     
@@ -400,61 +491,53 @@ function setupDaxChatbot() {
     // Show typing indicator
     const typingId = showTypingIndicator();
     
-    let matchedKey = null;
-    let maxScore = 0;
-    
-    const keywords = {
-      hi: ['hi', 'hello', 'hey', 'greetings', 'dax', 'sup', 'yo'],
-      linkedin: ['linkedin', 'linkdin'],
-      github: ['github', 'git', 'open source', 'repository', 'repo', 'repos'],
-      projects: ['projects', 'project', 'build', 'portfolio', 'creations'],
-      netra: ['netra', 'traffic', 'gnn', 'graph', 'signal'],
-      crm: ['crm', 'form', 'builder', 'workflow', 'ocr', 'tesseract'],
-      raksha: ['rakshaka', 'intrusion', 'cyber', 'ids', 'intrusion detection', 'ml', 'machine learning', 'models'],
-      patent: ['patent', 'hardware', 'invention', 'inventor', 'co-inventor', 'co-invent', 'invent'],
-      internships: ['intern', 'internship', 'experience', 'work', 'job', 'xebia', 'groove', 'innoventory', 'iit', 'fouses', 'my trick'],
-      education: ['education', 'college', 'upes', 'cgpa', 'grade', 'academics', 'university', 'b.tech', 'cse'],
-      skills: ['skill', 'skills', 'stack', 'tech', 'languages', 'c++', 'python', 'sql', 'docker', 'aws'],
-      contact: ['contact', 'email', 'phone', 'number', 'gmail', 'call', 'message', 'write'],
-      acm: ['acm', 'acm-w', 'board', 'secretary', 'event head'],
-      placement: ['placement', 'cell', 'representative', 'placement rep'],
-      gamejam: ['game jam', 'global game jam', 'ggj', 'game development', 'jam'],
-      ibm: ['ibm', 'ice day', 'ibm ice'],
-      recognition: ['recognition', 'achievements', 'awards', 'accolades', 'timeline', 'runner', 'winner', 'ambassador'],
-      certifications: ['certifications', 'certification', 'cert', 'certs', 'aws', 'credential', 'credentials', 'ecs', 'cdk'],
-      resume: ['resume', 'cv', 'download', 'pdf']
-    };
-
-    // Score each category based on keyword matches (with word boundary prioritization)
-    for (const [key, list] of Object.entries(keywords)) {
-      let score = 0;
-      list.forEach(kw => {
-        if (kw.includes(' ')) {
-          // Phrase match
-          if (cleaned.includes(kw)) {
-            score += 2.0;
-          }
-        } else {
-          // Word match
-          const words = cleaned.split(/[^a-z0-9+#\-]/);
-          if (words.includes(kw)) {
-            score += 1.5;
-          } else if (cleaned.includes(kw)) {
-            score += 0.5;
-          }
-        }
-      });
-      if (score > maxScore) {
-        maxScore = score;
-        matchedKey = key;
-      }
-    }
+    // Greeting check
+    const greetings = ['hi', 'hello', 'hey', 'greetings', 'dax', 'sup', 'yo'];
+    const words = cleaned.split(/[^a-z0-9+#\-]/);
+    const isGreeting = words.some(w => greetings.includes(w));
     
     let response = "";
-    if (maxScore > 0 && matchedKey) {
-      response = daxDatabase[matchedKey];
+    
+    if (isGreeting && words.length <= 2) {
+      response = "Hi! I'm Dax, Daksh's portfolio AI assistant. I can tell you about his projects, engineering internships, education, skills, certifications, recognition milestones, and details about his hardware patent. Feel free to ask anything!";
     } else {
-      response = "I can help you with Daksh's projects (NETRA, CRM Form Builder, Rakshaka), internships (Groove, Xebia, IIT Roorkee), patent, certifications, recognition, skills, or academics. Alternatively, ask for his resume, GitHub, or LinkedIn profile link!";
+      // Score each section of our portfolio corpus
+      const scoredResults = portfolioData.map(entry => {
+        let score = 0;
+        
+        // 1. Check exact matches for keywords (high weight)
+        entry.keywords.forEach(kw => {
+          if (kw.includes(' ')) {
+            if (cleaned.includes(kw)) score += 3.0; // Phrase match
+          } else {
+            if (words.includes(kw)) score += 2.0; // Exact word match
+            else if (cleaned.includes(kw)) score += 0.5; // Substring match
+          }
+        });
+        
+        // 2. Check matches in content text (lower weight)
+        const entryWords = entry.content.toLowerCase().split(/[^a-z0-9+#\-]/);
+        words.forEach(w => {
+          if (w.length > 2 && entryWords.includes(w)) {
+            score += 0.5;
+          }
+        });
+        
+        return { entry, score };
+      });
+      
+      // Sort and filter results
+      const matches = scoredResults
+        .filter(r => r.score >= 1.0)
+        .sort((a, b) => b.score - a.score);
+        
+      if (matches.length > 0) {
+        // Compile matching sections up to top 2 results
+        const topMatches = matches.slice(0, 2);
+        response = topMatches.map(m => m.entry.content).join("\n\n");
+      } else {
+        response = "I can help you with Daksh's projects (NETRA, CRM Form Builder, Rakshaka), internships (Groove, Xebia, IIT Roorkee), patent, certifications, recognition, skills, or academics. Alternatively, ask for his resume, GitHub, or LinkedIn profile link!";
+      }
     }
 
     // Delay response slightly to simulate AI processing
