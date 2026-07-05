@@ -1618,10 +1618,200 @@ a.info-item:hover {
   border: none;
   background: transparent;
   width: 100%;
-  max-width: 480px;
+  max-width: 580px;
   margin: auto;
   outline: none;
   padding: 16px;
+}
+
+/* Recruiter Interview Scheduler Styles */
+.form-row-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 576px) {
+  .form-row-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.sched-type-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.type-pill {
+  flex: 1;
+  padding: 10px;
+  background: var(--bg-surface-muted);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.type-pill.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.sched-date-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.date-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 6px;
+  background: var(--bg-surface-muted);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.date-pill .date-day {
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+  opacity: 0.6;
+}
+
+.date-pill .date-num {
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.date-pill.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.sched-time-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 4px;
+}
+
+@media (min-width: 480px) {
+  .sched-time-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.time-slot-btn {
+  padding: 10px;
+  background: var(--bg-surface-muted);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.time-slot-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.scheduler-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+  gap: 16px;
+}
+
+.scheduler-actions .btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.scheduler-actions .btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+
+.scheduler-actions .btn-secondary:hover {
+  background: var(--bg-surface-muted);
+}
+
+.scheduler-actions .btn-primary {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: #ffffff;
+  flex: 1;
+}
+
+.scheduler-actions .btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+.scheduler-status {
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  min-height: 20px;
+}
+
+.scheduler-status.success {
+  color: #10b981;
+}
+
+.scheduler-status.error {
+  color: #ef4444;
+}
+
+/* Dark mode compatibility updates */
+body.dark-theme .type-pill,
+body.dark-theme .date-pill,
+body.dark-theme .time-slot-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+}
+
+body.dark-theme .type-pill.active,
+body.dark-theme .date-pill.active,
+body.dark-theme .time-slot-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+body.dark-theme .scheduler-actions .btn-secondary {
+  border-color: rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+}
+
+body.dark-theme .scheduler-actions .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.04);
 }
 .recruiter-modal::backdrop {
   background-color: rgba(11, 21, 38, 0.4);
