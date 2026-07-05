@@ -91,7 +91,7 @@ function setupRecruiterModal() {
   const openModal = () => {
     modal.showModal();
     // Focus first link inside modal for accessibility
-    const firstLink = modal.querySelector('.btn-primary');
+    const firstLink = modal.querySelector('#trigger-scheduler');
     if (firstLink) firstLink.focus();
   };
 
@@ -164,17 +164,23 @@ function setupRecruiterScheduler(modal) {
   // View switches
   triggerBtn.addEventListener('click', (e) => {
     e.preventDefault();
+    e.stopPropagation();
     defaultView.style.display = 'none';
     schedulerView.style.display = 'block';
   });
 
-  backBtn.addEventListener('click', () => {
-    schedulerView.style.display = 'none';
-    defaultView.style.display = 'block';
-    form.reset();
-    status.className = 'scheduler-status';
-    status.textContent = '';
-  });
+  if (backBtn) {
+    backBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      schedulerView.style.display = 'none';
+      defaultView.style.display = 'block';
+      form.reset();
+      if (status) {
+        status.className = 'scheduler-status';
+        status.textContent = '';
+      }
+    });
+  }
 
   // Helper: Get next 4 working days (Mon-Fri)
   const getNextWorkDays = () => {
@@ -200,65 +206,79 @@ function setupRecruiterScheduler(modal) {
 
   // Populate dynamic dates
   const days = getNextWorkDays();
-  dateSelector.innerHTML = '';
-  days.forEach((day, index) => {
-    const pill = document.createElement('button');
-    pill.type = 'button';
-    pill.className = `date-pill ${index === 0 ? 'active' : ''}`;
-    pill.setAttribute('data-date', day.fullDateString);
-    pill.innerHTML = `
-      <span class="date-day">${day.dayLabel}</span>
-      <span class="date-num">${day.dateNum}</span>
-    `;
-    dateSelector.appendChild(pill);
+  if (dateSelector) {
+    dateSelector.innerHTML = '';
+    days.forEach((day, index) => {
+      const pill = document.createElement('button');
+      pill.type = 'button';
+      pill.className = `date-pill ${index === 0 ? 'active' : ''}`;
+      pill.setAttribute('data-date', day.fullDateString);
+      pill.innerHTML = `
+        <span class="date-day">${day.dayLabel}</span>
+        <span class="date-num">${day.dateNum}</span>
+      `;
+      dateSelector.appendChild(pill);
 
-    pill.addEventListener('click', () => {
-      dateSelector.querySelectorAll('.date-pill').forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
+      pill.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        dateSelector.querySelectorAll('.date-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+      });
     });
-  });
+  }
 
   // Type Selector pills toggle
-  const typePills = typeSelector.querySelectorAll('.type-pill');
-  typePills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      typePills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
+  if (typeSelector) {
+    const typePills = typeSelector.querySelectorAll('.type-pill');
+    typePills.forEach(pill => {
+      pill.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        typePills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+      });
     });
-  });
+  }
 
   // Time Slots buttons toggle
-  const timeBtns = timeSelector.querySelectorAll('.time-slot-btn');
-  timeBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      timeBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  if (timeSelector) {
+    const timeBtns = timeSelector.querySelectorAll('.time-slot-btn');
+    timeBtns.forEach(btn => {
+      btn.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        timeBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
     });
-  });
+  }
 
   // Form submission handler
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const name = modal.querySelector('#sched-name').value;
-    const org = modal.querySelector('#sched-org').value;
+    const nameInput = modal.querySelector('#sched-name');
+    const orgInput = modal.querySelector('#sched-org');
+    const name = nameInput ? nameInput.value : '';
+    const org = orgInput ? orgInput.value : '';
     
-    const activeTypeBtn = typeSelector.querySelector('.type-pill.active');
-    const activeDateBtn = dateSelector.querySelector('.date-pill.active');
-    const activeTimeBtn = timeSelector.querySelector('.time-slot-btn.active');
+    const activeTypeBtn = typeSelector ? typeSelector.querySelector('.type-pill.active') : null;
+    const activeDateBtn = dateSelector ? dateSelector.querySelector('.date-pill.active') : null;
+    const activeTimeBtn = timeSelector ? timeSelector.querySelector('.time-slot-btn.active') : null;
 
     const focus = activeTypeBtn ? activeTypeBtn.getAttribute('data-type') : 'Technical';
     const date = activeDateBtn ? activeDateBtn.getAttribute('data-date') : days[0].fullDateString;
     const time = activeTimeBtn ? activeTimeBtn.getAttribute('data-time') : '10:00 AM';
 
     const submitBtn = form.querySelector('#scheduler-submit-btn');
-    const originalBtnText = submitBtn.textContent;
+    const originalBtnText = submitBtn ? submitBtn.textContent : 'Confirm Reservation';
 
-    // Loading State
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Securing Slot...';
-    status.className = 'scheduler-status';
-    status.textContent = '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Securing Slot...';
+    }
+    if (status) {
+      status.className = 'scheduler-status';
+      status.textContent = '';
+    }
 
     fetch("https://formsubmit.co/ajax/mehrotradaksh2005@gmail.com", {
       method: "POST",
@@ -279,16 +299,20 @@ function setupRecruiterScheduler(modal) {
     })
     .then(response => {
       if (response.ok) {
-        status.className = 'scheduler-status success';
-        status.textContent = 'Success! Confirmation email dispatched to Daksh.';
+        if (status) {
+          status.className = 'scheduler-status success';
+          status.textContent = 'Success! Confirmation email dispatched to Daksh.';
+        }
         form.reset();
         
         // Return to standard view after delay
         setTimeout(() => {
           schedulerView.style.display = 'none';
           defaultView.style.display = 'block';
-          status.className = 'scheduler-status';
-          status.textContent = '';
+          if (status) {
+            status.className = 'scheduler-status';
+            status.textContent = '';
+          }
         }, 3000);
       } else {
         throw new Error();
@@ -298,12 +322,16 @@ function setupRecruiterScheduler(modal) {
       // Fallback: Mailto client
       const mailtoUrl = `mailto:mehrotradaksh2005@gmail.com?subject=Interview Booking Request&body=Hi Daksh,%0A%0AI'd like to schedule a ${encodeURIComponent(focus)} interview on ${encodeURIComponent(date)} at ${encodeURIComponent(time)}.%0A%0ASender: ${encodeURIComponent(name)} (${encodeURIComponent(org)})`;
       window.location.href = mailtoUrl;
-      status.className = 'scheduler-status success';
-      status.textContent = 'Booking request prepared in your mail app!';
+      if (status) {
+        status.className = 'scheduler-status success';
+        status.textContent = 'Booking request prepared in your mail app!';
+      }
     })
     .finally(() => {
-      submitBtn.disabled = false;
-      submitBtn.textContent = originalBtnText;
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+      }
     });
   });
 }
