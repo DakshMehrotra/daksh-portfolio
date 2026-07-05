@@ -157,6 +157,8 @@ function setupRecruiterScheduler(modal) {
   const dateSelector = modal.querySelector('#sched-date-selector');
   const typeSelector = modal.querySelector('#sched-type-selector');
   const timeSelector = modal.querySelector('#sched-time-selector');
+  const moodSelector = modal.querySelector('#sched-mood-selector');
+  const moodInsight = modal.querySelector('#sched-mood-insight');
   const status = modal.querySelector('#scheduler-status');
 
   if (!defaultView || !schedulerView || !triggerBtn || !form) return;
@@ -179,6 +181,84 @@ function setupRecruiterScheduler(modal) {
         status.className = 'scheduler-status';
         status.textContent = '';
       }
+    });
+  }
+
+  // Recruiter Mood selection logic
+  if (moodSelector && moodInsight) {
+    const moodPills = moodSelector.querySelectorAll('.mood-pill');
+    moodPills.forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        e.preventDefault();
+        moodPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+
+        const mood = pill.getAttribute('data-mood');
+        let focusType = 'Technical';
+        let timeSlot = '11:30 AM';
+        let dateIndex = 0; // Default to first day
+        let insightMsg = '';
+
+        if (mood === 'energetic') {
+          focusType = 'Technical';
+          timeSlot = '11:30 AM';
+          dateIndex = 0;
+          insightMsg = 'System: Ready for deep-dives & performance review questions.';
+        } else if (mood === 'sleepy') {
+          focusType = 'Behavioral';
+          timeSlot = '10:00 AM';
+          dateIndex = 0;
+          insightMsg = 'System: Gentle start. Bring coffee, easy behavioral chat mode.';
+        } else if (mood === 'busy') {
+          focusType = 'System Architecture';
+          timeSlot = '2:00 PM';
+          dateIndex = 0;
+          insightMsg = 'System: High-impact, concise, architecture-focused session.';
+        } else if (mood === 'laidback') {
+          focusType = 'Behavioral';
+          timeSlot = '4:30 PM';
+          dateIndex = 3; // Switch to the 4th day (usually end of week/Friday)
+          insightMsg = 'System: Casual end-of-week vibe. Sunset project overview.';
+        }
+
+        moodInsight.textContent = insightMsg;
+
+        // Auto-select Focus Type
+        if (typeSelector) {
+          const typeButtons = typeSelector.querySelectorAll('.type-pill');
+          typeButtons.forEach(btn => {
+            if (btn.getAttribute('data-type') === focusType) {
+              btn.classList.add('active');
+            } else {
+              btn.classList.remove('active');
+            }
+          });
+        }
+
+        // Auto-select Time Slot
+        if (timeSelector) {
+          const timeButtons = timeSelector.querySelectorAll('.time-slot-btn');
+          timeButtons.forEach(btn => {
+            if (btn.getAttribute('data-time') === timeSlot) {
+              btn.classList.add('active');
+            } else {
+              btn.classList.remove('active');
+            }
+          });
+        }
+
+        // Auto-select Date
+        if (dateSelector) {
+          const dateButtons = dateSelector.querySelectorAll('.date-pill');
+          dateButtons.forEach((btn, idx) => {
+            if (idx === dateIndex) {
+              btn.classList.add('active');
+            } else {
+              btn.classList.remove('active');
+            }
+          });
+        }
+      });
     });
   }
 

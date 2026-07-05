@@ -1625,6 +1625,46 @@ a.info-item:hover {
 }
 
 /* Recruiter Interview Scheduler Styles */
+.sched-mood-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.mood-pill {
+  flex: 1;
+  min-width: 90px;
+  padding: 10px;
+  background: var(--bg-surface-muted);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.mood-pill.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+body.dark-theme .mood-pill {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+}
+
+body.dark-theme .mood-pill.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
 .form-row-grid {
   display: grid;
   grid-template-columns: 1fr;

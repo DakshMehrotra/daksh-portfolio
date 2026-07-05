@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="index.css?v=50">
+  <link rel="stylesheet" href="index.css?v=51">
 </head>
 <body>
 
@@ -1126,6 +1126,18 @@
               </div>
             </div>
 
+            <!-- Recruiter Mood -->
+            <div class="form-group">
+              <label>Recruiter Mood Tracker</label>
+              <div class="sched-mood-row" id="sched-mood-selector">
+                <button type="button" class="mood-pill active" data-mood="energetic">⚡ Energetic</button>
+                <button type="button" class="mood-pill" data-mood="sleepy">☕ Sleepy</button>
+                <button type="button" class="mood-pill" data-mood="busy">⏱️ Busy</button>
+                <button type="button" class="mood-pill" data-mood="laidback">😴 Laid-back</button>
+              </div>
+              <p class="text-caption text-text-secondary mt-1.5" id="sched-mood-insight" style="font-style: italic;">System: Ready for deep-dives & performance review questions.</p>
+            </div>
+
             <!-- Type -->
             <div class="form-group">
               <label>Interview Focus</label>
@@ -1173,7 +1185,7 @@
   </dialog>
 
   <!-- Polyfills & Client Logic -->
-  <script type="module" src="index.js?v=50"></script>
+  <script type="module" src="index.js?v=51"></script>
 
 </body>
 </html>
