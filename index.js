@@ -154,14 +154,29 @@ function setupRecruiterScheduler(modal) {
   const triggerBtn = modal.querySelector('#trigger-scheduler');
   const backBtn = modal.querySelector('#scheduler-back-btn');
   const form = modal.querySelector('#scheduler-form');
-  const dateSelector = modal.querySelector('#sched-date-selector');
+  const dateInput = modal.querySelector('#sched-date');
+  const timeInput = modal.querySelector('#sched-time');
   const typeSelector = modal.querySelector('#sched-type-selector');
-  const timeSelector = modal.querySelector('#sched-time-selector');
-  const moodSelector = modal.querySelector('#sched-mood-selector');
-  const moodInsight = modal.querySelector('#sched-mood-insight');
   const status = modal.querySelector('#scheduler-status');
 
   if (!defaultView || !schedulerView || !triggerBtn || !form) return;
+
+  // Set default date & time values
+  const setupDefaults = () => {
+    if (dateInput) {
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const yyyy = tomorrow.getFullYear();
+      const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+      const dd = String(tomorrow.getDate()).padStart(2, '0');
+      dateInput.value = `${yyyy}-${mm}-${dd}`;
+      dateInput.min = `${yyyy}-${mm}-${dd}`; // Restrict past dates
+    }
+    if (timeInput) {
+      timeInput.value = "10:00"; // default 10:00 AM
+    }
+  };
+  setupDefaults();
 
   // View switches
   triggerBtn.addEventListener('click', (e) => {
@@ -177,133 +192,11 @@ function setupRecruiterScheduler(modal) {
       schedulerView.style.display = 'none';
       defaultView.style.display = 'block';
       form.reset();
+      setupDefaults();
       if (status) {
         status.className = 'scheduler-status';
         status.textContent = '';
       }
-    });
-  }
-
-  // Recruiter Mood selection logic
-  if (moodSelector && moodInsight) {
-    const moodPills = moodSelector.querySelectorAll('.mood-pill');
-    moodPills.forEach(pill => {
-      pill.addEventListener('click', (e) => {
-        e.preventDefault();
-        moodPills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-
-        const mood = pill.getAttribute('data-mood');
-        let focusType = 'Technical';
-        let timeSlot = '11:30 AM';
-        let dateIndex = 0; // Default to first day
-        let insightMsg = '';
-
-        if (mood === 'energetic') {
-          focusType = 'Technical';
-          timeSlot = '11:30 AM';
-          dateIndex = 0;
-          insightMsg = 'System: Ready for deep-dives & performance review questions.';
-        } else if (mood === 'sleepy') {
-          focusType = 'Behavioral';
-          timeSlot = '10:00 AM';
-          dateIndex = 0;
-          insightMsg = 'System: Gentle start. Bring coffee, easy behavioral chat mode.';
-        } else if (mood === 'busy') {
-          focusType = 'System Architecture';
-          timeSlot = '2:00 PM';
-          dateIndex = 0;
-          insightMsg = 'System: High-impact, concise, architecture-focused session.';
-        } else if (mood === 'laidback') {
-          focusType = 'Behavioral';
-          timeSlot = '4:30 PM';
-          dateIndex = 3; // Switch to the 4th day (usually end of week/Friday)
-          insightMsg = 'System: Casual end-of-week vibe. Sunset project overview.';
-        }
-
-        moodInsight.textContent = insightMsg;
-
-        // Auto-select Focus Type
-        if (typeSelector) {
-          const typeButtons = typeSelector.querySelectorAll('.type-pill');
-          typeButtons.forEach(btn => {
-            if (btn.getAttribute('data-type') === focusType) {
-              btn.classList.add('active');
-            } else {
-              btn.classList.remove('active');
-            }
-          });
-        }
-
-        // Auto-select Time Slot
-        if (timeSelector) {
-          const timeButtons = timeSelector.querySelectorAll('.time-slot-btn');
-          timeButtons.forEach(btn => {
-            if (btn.getAttribute('data-time') === timeSlot) {
-              btn.classList.add('active');
-            } else {
-              btn.classList.remove('active');
-            }
-          });
-        }
-
-        // Auto-select Date
-        if (dateSelector) {
-          const dateButtons = dateSelector.querySelectorAll('.date-pill');
-          dateButtons.forEach((btn, idx) => {
-            if (idx === dateIndex) {
-              btn.classList.add('active');
-            } else {
-              btn.classList.remove('active');
-            }
-          });
-        }
-      });
-    });
-  }
-
-  // Helper: Get next 4 working days (Mon-Fri)
-  const getNextWorkDays = () => {
-    const days = [];
-    const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    let current = new Date();
-
-    while (days.length < 4) {
-      current.setDate(current.getDate() + 1);
-      const dayOfWeek = current.getDay();
-      // Only include work days (skip Sat/Sun)
-      if (dayOfWeek !== 0 && dayOfWeek !== 6) {
-        days.push({
-          dayLabel: weekdays[dayOfWeek],
-          dateNum: current.getDate(),
-          fullDateString: `${weekdays[dayOfWeek]}, ${months[current.getMonth()]} ${current.getDate()}`
-        });
-      }
-    }
-    return days;
-  };
-
-  // Populate dynamic dates
-  const days = getNextWorkDays();
-  if (dateSelector) {
-    dateSelector.innerHTML = '';
-    days.forEach((day, index) => {
-      const pill = document.createElement('button');
-      pill.type = 'button';
-      pill.className = `date-pill ${index === 0 ? 'active' : ''}`;
-      pill.setAttribute('data-date', day.fullDateString);
-      pill.innerHTML = `
-        <span class="date-day">${day.dayLabel}</span>
-        <span class="date-num">${day.dateNum}</span>
-      `;
-      dateSelector.appendChild(pill);
-
-      pill.addEventListener('click', (ev) => {
-        ev.preventDefault();
-        dateSelector.querySelectorAll('.date-pill').forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-      });
     });
   }
 
@@ -319,18 +212,6 @@ function setupRecruiterScheduler(modal) {
     });
   }
 
-  // Time Slots buttons toggle
-  if (timeSelector) {
-    const timeBtns = timeSelector.querySelectorAll('.time-slot-btn');
-    timeBtns.forEach(btn => {
-      btn.addEventListener('click', (ev) => {
-        ev.preventDefault();
-        timeBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      });
-    });
-  }
-
   // Form submission handler
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -341,12 +222,28 @@ function setupRecruiterScheduler(modal) {
     const org = orgInput ? orgInput.value : '';
     
     const activeTypeBtn = typeSelector ? typeSelector.querySelector('.type-pill.active') : null;
-    const activeDateBtn = dateSelector ? dateSelector.querySelector('.date-pill.active') : null;
-    const activeTimeBtn = timeSelector ? timeSelector.querySelector('.time-slot-btn.active') : null;
-
     const focus = activeTypeBtn ? activeTypeBtn.getAttribute('data-type') : 'Technical';
-    const date = activeDateBtn ? activeDateBtn.getAttribute('data-date') : days[0].fullDateString;
-    const time = activeTimeBtn ? activeTimeBtn.getAttribute('data-time') : '10:00 AM';
+    
+    const rawDate = dateInput ? dateInput.value : '';
+    const rawTime = timeInput ? timeInput.value : '';
+
+    // Format Date beautifully: "Mon, Jul 7, 2026"
+    let formattedDate = rawDate;
+    if (rawDate) {
+      const d = new Date(rawDate + 'T00:00:00'); // prevent timezone shift issues
+      formattedDate = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    // Format Time beautifully: "10:00 AM"
+    let formattedTime = rawTime;
+    if (rawTime) {
+      const [hours, minutes] = rawTime.split(':');
+      let h = parseInt(hours);
+      const ampm = h >= 12 ? 'PM' : 'AM';
+      h = h % 12;
+      h = h ? h : 12; // the hour '0' should be '12'
+      formattedTime = `${h}:${minutes} ${ampm}`;
+    }
 
     const submitBtn = form.querySelector('#scheduler-submit-btn');
     const originalBtnText = submitBtn ? submitBtn.textContent : 'Confirm Interview';
@@ -370,8 +267,8 @@ function setupRecruiterScheduler(modal) {
         "Recruiter Name": name,
         "Company / Org": org,
         "Meeting Focus": focus,
-        "Selected Date": date,
-        "Selected Time Slot": time,
+        "Selected Date": formattedDate,
+        "Selected Time Slot": formattedTime,
         "_subject": `[INTERVIEW BOOKING] from ${name} (${org})`,
         "_template": "box",
         "_captcha": "false"
@@ -384,6 +281,7 @@ function setupRecruiterScheduler(modal) {
           status.textContent = 'Success! Confirmation email dispatched to Daksh.';
         }
         form.reset();
+        setupDefaults();
         
         // Return to standard view after delay
         setTimeout(() => {
@@ -400,7 +298,7 @@ function setupRecruiterScheduler(modal) {
     })
     .catch(() => {
       // Fallback: Mailto client
-      const mailtoUrl = `mailto:mehrotradaksh2005@gmail.com?subject=Interview Booking Request&body=Hi Daksh,%0A%0AI'd like to schedule a ${encodeURIComponent(focus)} interview on ${encodeURIComponent(date)} at ${encodeURIComponent(time)}.%0A%0ASender: ${encodeURIComponent(name)} (${encodeURIComponent(org)})`;
+      const mailtoUrl = `mailto:mehrotradaksh2005@gmail.com?subject=Interview Booking Request&body=Hi Daksh,%0A%0AI'd like to schedule a ${encodeURIComponent(focus)} interview on ${encodeURIComponent(formattedDate)} at ${encodeURIComponent(formattedTime)}.%0A%0ASender: ${encodeURIComponent(name)} (${encodeURIComponent(org)})`;
       window.location.href = mailtoUrl;
       if (status) {
         status.className = 'scheduler-status success';

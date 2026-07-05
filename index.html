@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="index.css?v=51">
+  <link rel="stylesheet" href="index.css?v=50">
 </head>
 <body>
 
@@ -1126,18 +1126,6 @@
               </div>
             </div>
 
-            <!-- Recruiter Mood -->
-            <div class="form-group">
-              <label>Recruiter Mood Tracker</label>
-              <div class="sched-mood-row" id="sched-mood-selector">
-                <button type="button" class="mood-pill active" data-mood="energetic">⚡ Energetic</button>
-                <button type="button" class="mood-pill" data-mood="sleepy">☕ Sleepy</button>
-                <button type="button" class="mood-pill" data-mood="busy">⏱️ Busy</button>
-                <button type="button" class="mood-pill" data-mood="laidback">😴 Laid-back</button>
-              </div>
-              <p class="text-caption text-text-secondary mt-1.5" id="sched-mood-insight" style="font-style: italic;">System: Ready for deep-dives & performance review questions.</p>
-            </div>
-
             <!-- Type -->
             <div class="form-group">
               <label>Interview Focus</label>
@@ -1148,22 +1136,15 @@
               </div>
             </div>
 
-            <!-- Date Picker -->
-            <div class="form-group">
-              <label>Select Date</label>
-              <div class="sched-date-grid" id="sched-date-selector">
-                <!-- Dynamically generated days -->
+            <!-- Date & Time Selection -->
+            <div class="form-row-grid">
+              <div class="form-group">
+                <label for="sched-date">Select Date</label>
+                <input type="date" id="sched-date" required class="scheduler-date-input">
               </div>
-            </div>
-
-            <!-- Time Slots -->
-            <div class="form-group">
-              <label>Available Slots (IST / GMT+5:30)</label>
-              <div class="sched-time-grid" id="sched-time-selector">
-                <button type="button" class="time-slot-btn active" data-time="10:00 AM">10:00 AM</button>
-                <button type="button" class="time-slot-btn" data-time="11:30 AM">11:30 AM</button>
-                <button type="button" class="time-slot-btn" data-time="2:00 PM">2:00 PM</button>
-                <button type="button" class="time-slot-btn" data-time="4:30 PM">4:30 PM</button>
+              <div class="form-group">
+                <label for="sched-time">Select Time (GMT+5:30 / IST)</label>
+                <input type="time" id="sched-time" required class="scheduler-time-input">
               </div>
             </div>
 
@@ -1185,7 +1166,7 @@
   </dialog>
 
   <!-- Polyfills & Client Logic -->
-  <script type="module" src="index.js?v=51"></script>
+  <script type="module" src="index.js?v=50"></script>
 
 </body>
 </html>

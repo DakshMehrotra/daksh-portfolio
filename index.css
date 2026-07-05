@@ -1624,47 +1624,41 @@ a.info-item:hover {
   padding: 16px;
 }
 
-/* Recruiter Interview Scheduler Styles */
-.sched-mood-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 4px;
-}
-
-.mood-pill {
-  flex: 1;
-  min-width: 90px;
-  padding: 10px;
+/* Date & Time Picker Custom Styles */
+.scheduler-date-input,
+.scheduler-time-input {
+  width: 100%;
+  padding: 12px 16px;
   background: var(--bg-surface-muted);
   border: 1px solid var(--border-color);
-  color: var(--text-secondary);
+  color: var(--text-primary);
   border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  font-family: inherit;
   transition: all 0.2s ease;
-  text-align: center;
 }
 
-.mood-pill.active {
-  background: var(--accent);
+.scheduler-date-input:focus,
+.scheduler-time-input:focus {
   border-color: var(--accent);
-  color: #ffffff;
+  box-shadow: 0 0 0 2px var(--accent-surface);
 }
 
-body.dark-theme .mood-pill {
+body.dark-theme .scheduler-date-input,
+body.dark-theme .scheduler-time-input {
   background: rgba(255, 255, 255, 0.04);
   border-color: rgba(255, 255, 255, 0.08);
-  color: var(--text-secondary);
-}
-
-body.dark-theme .mood-pill.active {
-  background: var(--accent);
-  border-color: var(--accent);
   color: #ffffff;
 }
 
+body.dark-theme .scheduler-date-input:focus,
+body.dark-theme .scheduler-time-input:focus {
+  border-color: var(--accent);
+}
+
+/* Recruiter Interview Scheduler Styles */
 .form-row-grid {
   display: grid;
   grid-template-columns: 1fr;
