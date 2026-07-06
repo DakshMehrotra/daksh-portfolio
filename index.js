@@ -508,6 +508,16 @@ function setupDaxChatbot() {
       category: "Contact Info",
       keywords: ["contact", "email", "phone", "number", "gmail", "call", "message", "write", "location", "address", "reach"],
       content: "You can reach Daksh via email at **mehrotradaksh2005@gmail.com** or call him at **+91 70070 46198**.\n\nAlternatively, you can connect on [LinkedIn](https://www.linkedin.com/in/mehrotradaksh/) or explore his repositories on [GitHub](https://github.com/DakshMehrotra)."
+    },
+    {
+      category: "Internships Overview",
+      keywords: ["intern", "internship", "internships", "experience", "work", "job", "jobs", "employment"],
+      content: "Daksh has completed 6 engineering internships:\n\n1. **Xebia** (Project Intern, Jun 2026 - Present): Working on Agentic AI frameworks.\n2. **Groove Innovations** (Data Engineering Intern, May 2026 - Present): Developed and deployed a dynamic CRM form builder.\n3. **IIT Roorkee** (R&D Intern, May 2025 - Jun 2025): Neuromorphic computing R&D.\n4. **Innoventory Solutions** (Software Intern, Sep 2025 - Mar 2026): Testing and patent coordination.\n5. **Fouses** (Software Intern, Jul 2025 - Aug 2025): Streamlined client contracts.\n6. **My Trick International** (Software Intern, Jun 2025 - Jul 2025): Frontend UI features."
+    },
+    {
+      category: "Projects Overview",
+      keywords: ["projects", "project", "build", "portfolio", "creations"],
+      content: "Daksh has built three main featured projects:\n\n1. **NETRA**: Next-gen Emergency-aware Traffic Response Architecture (YOLOv8 + Graph Neural Networks).\n2. **CRM Form Builder**: A React 19 / Express 5 workflow intelligence platform with OCR and drawn signatures.\n3. **Rakshaka**: An ML-powered network intrusion detection system (trained 7 models including XGBoost)."
     }
   ];
 
