@@ -384,9 +384,9 @@ function setupDaxChatbot() {
       content: "Daksh is a Student Placement Representative at the UPES Placement Cell (May 2026 - Present). He coordinates between corporate recruiters and student candidates, driving campus placement logistics."
     },
     {
-      category: "Campus Ambassador",
-      keywords: ["ambassador", "campus ambassador", "relations"],
-      content: "Daksh was a Campus Ambassador for Community Relations (Aug 2025 - Jan 2026). In this role, he fostered collaborative technical learning and represented external tech initiatives on campus."
+      category: "Unstop Campus Ambassador",
+      keywords: ["ambassador", "campus ambassador", "unstop"],
+      content: "Daksh was an Unstop Campus Ambassador (Aug 2025 - Jan 2026). In this role, he fostered collaborative technical learning and represented external tech initiatives on campus."
     },
     {
       category: "Patent Co-Inventor",
