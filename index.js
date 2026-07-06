@@ -318,7 +318,7 @@ function setupRecruiterScheduler(modal) {
       if (response.ok) {
         if (status) {
           status.className = 'scheduler-status success';
-          status.textContent = 'Success! Video meeting link generated and details emailed to both of you.';
+          status.textContent = 'Interview scheduled successfully!';
         }
         form.reset();
         setupDefaults();
@@ -342,7 +342,7 @@ function setupRecruiterScheduler(modal) {
       window.location.href = mailtoUrl;
       if (status) {
         status.className = 'scheduler-status success';
-        status.textContent = 'Booking request prepared in your mail app!';
+        status.textContent = 'Mail client opened.';
       }
     })
     .finally(() => {

@@ -1815,18 +1815,50 @@ body.dark-theme .scheduler-time-input:focus {
 }
 
 .scheduler-status {
-  margin-top: 12px;
+  margin-top: 16px;
   font-size: 13px;
-  font-weight: 600;
-  min-height: 20px;
+  font-weight: 500;
+  min-height: 0;
+  display: none; /* Hidden until activated */
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.scheduler-status.success,
+.scheduler-status.error {
+  display: flex;
 }
 
 .scheduler-status.success {
-  color: #10b981;
+  color: #047857;
+  background-color: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  padding: 10px 16px;
+  border-radius: 8px;
 }
 
 .scheduler-status.error {
-  color: #ef4444;
+  color: #b91c1c;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  padding: 10px 16px;
+  border-radius: 8px;
+}
+
+/* Dark mode compatibility */
+body.dark-theme .scheduler-status.success {
+  color: #a7f3d0;
+  background-color: rgba(4, 120, 87, 0.2);
+  border-color: rgba(52, 211, 153, 0.3);
+}
+
+body.dark-theme .scheduler-status.error {
+  color: #fecaca;
+  background-color: rgba(185, 28, 28, 0.2);
+  border-color: rgba(248, 113, 113, 0.3);
 }
 
 /* Dark mode compatibility updates */
