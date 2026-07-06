@@ -904,14 +904,14 @@ function setupRecruiterGuestbook() {
   // Pre-load default mock notes if localStorage is empty
   const defaultNotes = [
     {
-      author: "Jane Doe",
-      company: "Xebia Recruiter",
+      author: "Aarav Sharma",
+      company: "Xebia India",
       message: "Amazing portfolio, Daksh! Loved the NETRA emergency routing GNN logic.",
       color: "cyan",
       date: "Jul 6, 2026"
     },
     {
-      author: "John Smith",
+      author: "Ananya Patel",
       company: "Groove Innovations",
       message: "Impressive work on the React 19 CRM builder. Looking forward to our interview!",
       color: "yellow",
@@ -921,7 +921,7 @@ function setupRecruiterGuestbook() {
 
   const getStoredNotes = () => {
     const stored = localStorage.getItem('guestbook_notes');
-    if (!stored) {
+    if (!stored || stored.includes("Jane Doe")) {
       localStorage.setItem('guestbook_notes', JSON.stringify(defaultNotes));
       return defaultNotes;
     }

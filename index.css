@@ -3294,3 +3294,34 @@ body.dark-theme .guestbook-form-box {
   border-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
 }
+
+/* Guestbook Input Box Styling (Light Mode defaults to White) */
+#guestbook-form input,
+#guestbook-form textarea {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+  transition: all 0.2s ease;
+}
+
+#guestbook-form input:focus,
+#guestbook-form textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-surface);
+  background-color: #ffffff;
+}
+
+/* Guestbook Input Dark Mode override */
+body.dark-theme #guestbook-form input,
+body.dark-theme #guestbook-form textarea {
+  background-color: var(--bg-navy);
+  border: 1px solid var(--border-dark);
+  color: var(--text-on-dark);
+}
+
+body.dark-theme #guestbook-form input:focus,
+body.dark-theme #guestbook-form textarea:focus {
+  background-color: transparent;
+  border-color: var(--accent);
+  box-shadow: none;
+}
