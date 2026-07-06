@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setupScrollSpy();
   setupContactForm();
   setupProjectSliders();
-  setupRecruiterGuestbook();
 });
 
 /* ==========================================================================
@@ -488,7 +487,7 @@ function setupDaxChatbot() {
     {
       category: "Education",
       keywords: ["education", "college", "upes", "cgpa", "grade", "academics", "university", "b.tech", "cse", "cloud computing"],
-      content: "Daksh is pursuing a B.Tech in Computer Science and Engineering (with Cloud Computing specialization) at **UPES Dehradun**. He has an **8.71 CGPA** (Aug 2023 - Present)."
+      content: "Daksh is pursuing a B.Tech in Computer Science and Engineering (with Cloud Computing specialization) at **UPES Dehradun**. He has an **8.7 CGPA** (Aug 2023 - Present)."
     },
     {
       category: "Skills",
@@ -873,188 +872,6 @@ function setupPagePreloader() {
       }, index * 80); // Stagger element entrances by 80ms for an ultra-fluid feel
     });
   }, 100);
-}
-
-/* ==========================================================================
-   9. Recruiter Sticky Guestbook Board
-   ========================================================================== */
-function setupRecruiterGuestbook() {
-  const form = document.getElementById('guestbook-form');
-  const board = document.getElementById('guestbook-board');
-  const status = document.getElementById('guestbook-status');
-  const colorPicker = document.getElementById('note-color-picker');
-
-  if (!form || !board) return;
-
-  let selectedColor = 'yellow';
-
-  // Handle color button clicks
-  if (colorPicker) {
-    const colorBtns = colorPicker.querySelectorAll('.color-btn');
-    colorBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        colorBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        selectedColor = btn.getAttribute('data-color');
-      });
-    });
-  }
-
-  // Pre-load default mock notes if localStorage is empty
-  const defaultNotes = [
-    {
-      author: "Aarav Sharma",
-      company: "Xebia India",
-      message: "Amazing portfolio, Daksh! Loved the NETRA emergency routing GNN logic.",
-      color: "cyan",
-      date: "Jul 6, 2026"
-    },
-    {
-      author: "Ananya Patel",
-      company: "Groove Innovations",
-      message: "Impressive work on the React 19 CRM builder. Looking forward to our interview!",
-      color: "yellow",
-      date: "Jul 5, 2026"
-    }
-  ];
-
-  const getStoredNotes = () => {
-    const stored = localStorage.getItem('guestbook_notes');
-    if (!stored || stored.includes("Jane Doe")) {
-      localStorage.setItem('guestbook_notes', JSON.stringify(defaultNotes));
-      return defaultNotes;
-    }
-    return JSON.parse(stored);
-  };
-
-  const renderNotes = () => {
-    board.innerHTML = '';
-    const notes = getStoredNotes();
-
-    notes.forEach((note) => {
-      const noteEl = document.createElement('div');
-      noteEl.className = `sticky-note ${note.color}`;
-      
-      // Random tilt rotation for organic look
-      const tilt = Math.floor(Math.random() * 6) - 3; // -3deg to +3deg
-      noteEl.style.transform = `rotate(${tilt}deg)`;
-
-      noteEl.innerHTML = `
-        <div class="note-pin"></div>
-        <p class="note-text">"${note.message}"</p>
-        <div class="note-meta">
-          <div class="note-author">${note.author}</div>
-          <div class="note-company">${note.company}</div>
-          <div class="note-date">${note.date}</div>
-        </div>
-      `;
-      board.appendChild(noteEl);
-    });
-  };
-
-  // Submit new note
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const authorInput = document.getElementById('note-author');
-    const companyInput = document.getElementById('note-company');
-    const messageInput = document.getElementById('note-message');
-    const submitBtn = document.getElementById('note-submit-btn');
-
-    const author = authorInput ? authorInput.value.trim() : '';
-    const company = companyInput ? companyInput.value.trim() : '';
-    const message = messageInput ? messageInput.value.trim() : '';
-
-    if (!author || !company || !message) {
-      if (status) {
-        status.className = 'scheduler-status error';
-        status.textContent = 'All fields are mandatory.';
-      }
-      return;
-    }
-
-    const today = new Date();
-    const formattedDate = today.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-
-    const newNote = {
-      author,
-      company,
-      message,
-      color: selectedColor,
-      date: formattedDate
-    };
-
-    // Save note locally
-    const notes = getStoredNotes();
-    notes.unshift(newNote); // Put newest note first
-    localStorage.setItem('guestbook_notes', JSON.stringify(notes));
-
-    // Render updated board
-    renderNotes();
-
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Pinning...';
-    }
-
-    // Send copy to Daksh's email
-    fetch("https://formsubmit.co/ajax/mehrotradaksh2005@gmail.com", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        "Name": author,
-        "Company": company,
-        "Message": message,
-        "Color": selectedColor,
-        "_subject": `[GUESTBOOK NOTE] from ${author} (${company})`,
-        "_captcha": "false"
-      })
-    })
-    .then(res => {
-      if (res.ok) {
-        if (status) {
-          status.className = 'scheduler-status success';
-          status.textContent = 'Note pinned successfully!';
-        }
-        form.reset();
-        selectedColor = 'yellow';
-        const colorBtns = colorPicker.querySelectorAll('.color-btn');
-        colorBtns.forEach(b => b.classList.remove('active'));
-        const defaultColorBtn = colorPicker.querySelector('[data-color="yellow"]');
-        if (defaultColorBtn) defaultColorBtn.classList.add('active');
-        
-        // Clear success message after delay
-        setTimeout(() => {
-          if (status) {
-            status.className = 'scheduler-status';
-            status.textContent = '';
-          }
-        }, 3000);
-      } else {
-        throw new Error();
-      }
-    })
-    .catch(() => {
-      if (status) {
-        status.className = 'scheduler-status success';
-        status.textContent = 'Note pinned locally!';
-      }
-      form.reset();
-    })
-    .finally(() => {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Pin Note';
-      }
-    });
-  });
-
-  // Initial render
-  renderNotes();
 }
 
 
