@@ -270,10 +270,8 @@ function setupRecruiterScheduler(modal) {
       formattedTime = `${h}:${minutes} ${ampm}`;
     }
 
-    // Generate genuine Google Meet link
-    const chars = 'abcdefghijklmnopqrstuvwxyz';
-    const randPart = (len) => Array.from({length: len}, () => chars[Math.floor(Math.random() * chars.length)]).join('');
-    const meetLink = `https://meet.google.com/${randPart(3)}-${randPart(4)}-${randPart(3)}`;
+    // Use a dedicated permanent Google Meet link (guaranteed to be operable for all bookings)
+    const meetLink = "https://meet.google.com/zpv-jcrv-yvw";
 
     const submitBtn = form.querySelector('#scheduler-submit-btn');
     const originalBtnText = submitBtn ? submitBtn.textContent : 'Confirm Interview';
