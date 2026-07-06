@@ -447,7 +447,7 @@ function setupDaxChatbot() {
     {
       category: "Groove Innovations Internship",
       keywords: ["groove", "groove innovations", "data engineering", "crm form builder", "deployed"],
-      content: "Daksh is a Data Engineering Intern at **Groove Innovations** (May 2026 - Present). He developed and successfully deployed a dynamic CRM form builder for the company's internal CRM workflows."
+      content: "Daksh is a Data Engineering Intern at **Groove Innovations** (May 2026 - Jun 2026). He developed and successfully deployed a dynamic CRM form builder for the company's internal CRM workflows."
     },
     {
       category: "Innoventory Solutions Internship",
@@ -512,7 +512,7 @@ function setupDaxChatbot() {
     {
       category: "Internships Overview",
       keywords: ["intern", "internship", "internships", "experience", "work", "job", "jobs", "employment"],
-      content: "Daksh has completed 6 engineering internships:\n\n1. **Xebia** (Project Intern, Jun 2026 - Present): Working on Agentic AI frameworks.\n2. **Groove Innovations** (Data Engineering Intern, May 2026 - Present): Developed and deployed a dynamic CRM form builder.\n3. **IIT Roorkee** (R&D Intern, May 2025 - Jun 2025): Neuromorphic computing R&D.\n4. **Innoventory Solutions** (Software Intern, Sep 2025 - Mar 2026): Testing and patent coordination.\n5. **Fouses** (Software Intern, Jul 2025 - Aug 2025): Streamlined client contracts.\n6. **My Trick International** (Software Intern, Jun 2025 - Jul 2025): Frontend UI features."
+      content: "Daksh has completed 6 engineering internships:\n\n1. **Xebia** (Project Intern, Jun 2026 - Present): Working on Agentic AI frameworks.\n2. **Groove Innovations** (Data Engineering Intern, May 2026 - Jun 2026): Developed and deployed a dynamic CRM form builder.\n3. **IIT Roorkee** (R&D Intern, May 2025 - Jun 2025): Neuromorphic computing R&D.\n4. **Innoventory Solutions** (Software Intern, Sep 2025 - Mar 2026): Testing and patent coordination.\n5. **Fouses** (Software Intern, Jul 2025 - Aug 2025): Streamlined client contracts.\n6. **My Trick International** (Software Intern, Jun 2025 - Jul 2025): Frontend UI features."
     },
     {
       category: "Projects Overview",
