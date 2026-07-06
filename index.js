@@ -270,8 +270,10 @@ function setupRecruiterScheduler(modal) {
       formattedTime = `${h}:${minutes} ${ampm}`;
     }
 
-    // Use a dedicated permanent Google Meet link (guaranteed to be operable for all bookings)
-    const meetLink = "https://meet.google.com/zpv-jcrv-yvw";
+    // Generate a unique, instantly operable video meeting room link (via Jitsi Meet, which guarantees instant room creation)
+    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    const randPart = (len) => Array.from({length: len}, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+    const meetLink = `https://meet.jit.si/Daksh-Interview-${randPart(4)}-${randPart(4)}`;
 
     const submitBtn = form.querySelector('#scheduler-submit-btn');
     const originalBtnText = submitBtn ? submitBtn.textContent : 'Confirm Interview';
@@ -298,7 +300,7 @@ function setupRecruiterScheduler(modal) {
         "Meeting Focus": focus,
         "Selected Date": formattedDate,
         "Selected Time Slot": formattedTime,
-        "Google Meet Link": meetLink,
+        "Video Meeting Link": meetLink,
         "_subject": `[INTERVIEW BOOKING] ${name} (${org})`,
         "_template": "box",
         "_captcha": "false",
@@ -310,7 +312,7 @@ function setupRecruiterScheduler(modal) {
       if (response.ok) {
         if (status) {
           status.className = 'scheduler-status success';
-          status.textContent = 'Success! Google Meet link generated and details emailed to both of you.';
+          status.textContent = 'Success! Video meeting link generated and details emailed to both of you.';
         }
         form.reset();
         setupDefaults();
@@ -330,7 +332,7 @@ function setupRecruiterScheduler(modal) {
     })
     .catch(() => {
       // Fallback: Mailto client
-      const mailtoUrl = `mailto:mehrotradaksh2005@gmail.com,${encodeURIComponent(email)}?subject=Interview Booking Request&body=Hi,%0A%0AAn interview has been booked.%0A%0AMeeting Focus: ${encodeURIComponent(focus)}%0ADate: ${encodeURIComponent(formattedDate)}%0ATime: ${encodeURIComponent(formattedTime)}%0AGoogle Meet Link: ${encodeURIComponent(meetLink)}%0A%0ASender: ${encodeURIComponent(name)} (${encodeURIComponent(org)})`;
+      const mailtoUrl = `mailto:mehrotradaksh2005@gmail.com,${encodeURIComponent(email)}?subject=Interview Booking Request&body=Hi,%0A%0AAn interview has been booked.%0A%0AMeeting Focus: ${encodeURIComponent(focus)}%0ADate: ${encodeURIComponent(formattedDate)}%0ATime: ${encodeURIComponent(formattedTime)}%0AVideo Meeting Link: ${encodeURIComponent(meetLink)}%0A%0ASender: ${encodeURIComponent(name)} (${encodeURIComponent(org)})`;
       window.location.href = mailtoUrl;
       if (status) {
         status.className = 'scheduler-status success';
