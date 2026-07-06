@@ -523,7 +523,7 @@
         <ol class="relative border-l border-border-dark pl-8 space-y-10">
           
           <li class="relative">
-            <span class="absolute -left-[37px] top-1 w-3 h-3 rounded-full bg-accent ring-4 ring-navy"></span>
+            <span class="absolute -left-[37px] top-1 w-3 h-3 rounded-full bg-accent ring-4 ring-navy dot-active-pulse"></span>
             <span class="text-caption uppercase text-accent">May 2026 – Present</span>
             <div class="flex flex-wrap items-baseline gap-x-3 mt-1">
               <h3 class="text-h2 text-text-onDark">Executive Board Member</h3>
@@ -533,7 +533,7 @@
           </li>
 
           <li class="relative">
-            <span class="absolute -left-[37px] top-1 w-3 h-3 rounded-full bg-accent ring-4 ring-navy"></span>
+            <span class="absolute -left-[37px] top-1 w-3 h-3 rounded-full bg-accent ring-4 ring-navy dot-active-pulse"></span>
             <span class="text-caption uppercase text-accent">May 2026 – Present</span>
             <div class="flex flex-wrap items-baseline gap-x-3 mt-1">
               <h3 class="text-h2 text-text-onDark">Student Placement Representative</h3>
@@ -1114,16 +1114,21 @@
           <p class="recruiter-lead">Set up a video meeting with Daksh instantly.</p>
           
           <form class="scheduler-form" id="scheduler-form">
-            <!-- Name / Company -->
+            <!-- Name / Email -->
             <div class="form-row-grid">
               <div class="form-group">
                 <label for="sched-name">Your Name</label>
                 <input type="text" id="sched-name" required placeholder="">
               </div>
               <div class="form-group">
-                <label for="sched-org">Company / Organization</label>
-                <input type="text" id="sched-org" required placeholder="">
+                <label for="sched-email">Your Email</label>
+                <input type="email" id="sched-email" required placeholder="">
               </div>
+            </div>
+            <!-- Company -->
+            <div class="form-group">
+              <label for="sched-org">Company / Organization</label>
+              <input type="text" id="sched-org" required placeholder="">
             </div>
 
             <!-- Type -->
