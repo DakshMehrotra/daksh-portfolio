@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="index.css?v=67">
+  <link rel="stylesheet" href="index.css?v=68">
 </head>
 <body>
 
@@ -975,6 +975,63 @@
       </div>
     </section>
 
+    <!-- Recruiter Sticky Guestbook Section -->
+    <section id="guestbook" class="bg-navy section-y relative border-t border-border-light">
+      <div class="container-portfolio">
+        <div class="text-center max-w-xl mx-auto mb-12">
+          <p class="text-caption uppercase text-accent tracking-widest mb-2">Interactive Board</p>
+          <h2 class="text-h1 text-text-onDark mb-4">Recruiter Board</h2>
+          <p class="text-body text-text-onDarkMuted">Leave a sticky note with your name, company, and a quick greeting or feedback.</p>
+        </div>
+
+        <div class="guestbook-container">
+          <!-- Form to add sticky note -->
+          <div class="guestbook-form-box">
+            <form id="guestbook-form" class="scheduler-form">
+              <div class="form-row-grid">
+                <div class="form-group">
+                  <label for="note-author">Your Name</label>
+                  <input type="text" id="note-author" required placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="note-company">Company</label>
+                  <input type="text" id="note-company" required placeholder="">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="note-message">Greeting Message</label>
+                <textarea id="note-message" required rows="3" placeholder="" style="resize: none;"></textarea>
+              </div>
+
+              <!-- Color picker selection -->
+              <div class="form-group">
+                <label>Select Sticky Color</label>
+                <div class="note-color-picker" id="note-color-picker">
+                  <button type="button" class="color-btn active" data-color="yellow" style="background-color: #fef08a;" aria-label="Yellow"></button>
+                  <button type="button" class="color-btn" data-color="pink" style="background-color: #fbcfe8;" aria-label="Pink"></button>
+                  <button type="button" class="color-btn" data-color="cyan" style="background-color: #cffafe;" aria-label="Cyan"></button>
+                  <button type="button" class="color-btn" data-color="lime" style="background-color: #d9f99d;" aria-label="Lime"></button>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between gap-4 mt-6">
+                <div id="guestbook-status" class="scheduler-status" style="margin-top: 0;"></div>
+                <button type="submit" id="note-submit-btn" class="btn btn-primary" style="margin-left: auto;">Pin Note</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Corkboard displaying notes -->
+          <div class="guestbook-board-wrapper">
+            <div class="guestbook-board" id="guestbook-board">
+              <!-- Sticky notes will be dynamically generated here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
       <div class="container-portfolio">
@@ -1176,7 +1233,7 @@
   </dialog>
 
   <!-- Polyfills & Client Logic -->
-  <script type="module" src="index.js?v=67"></script>
+  <script type="module" src="index.js?v=68"></script>
 
 </body>
 </html>
