@@ -828,12 +828,12 @@ function setupProjectSliders() {
       showSlide(newIndex);
     };
     
-    // Auto-advance every 10 seconds (10000ms)
-    let autoTimer = setInterval(nextSlide, 10000);
+    // Auto-advance every 3 seconds (3000ms)
+    let autoTimer = setInterval(nextSlide, 3000);
     
     const resetTimer = () => {
       clearInterval(autoTimer);
-      autoTimer = setInterval(nextSlide, 10000);
+      autoTimer = setInterval(nextSlide, 3000);
     };
     
     // Click anywhere on the slider container to advance to the next slide
