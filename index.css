@@ -1833,32 +1833,20 @@ body.dark-theme .scheduler-time-input:focus {
 }
 
 .scheduler-status.success {
-  color: #047857;
-  background-color: #ecfdf5;
-  border: 1px solid #a7f3d0;
-  padding: 10px 16px;
-  border-radius: 8px;
+  color: #10b981; /* clean emerald green text */
 }
 
 .scheduler-status.error {
-  color: #b91c1c;
-  background-color: #fef2f2;
-  border: 1px solid #fecaca;
-  padding: 10px 16px;
-  border-radius: 8px;
+  color: #ef4444; /* clean error red text */
 }
 
 /* Dark mode compatibility */
 body.dark-theme .scheduler-status.success {
-  color: #a7f3d0;
-  background-color: rgba(4, 120, 87, 0.2);
-  border-color: rgba(52, 211, 153, 0.3);
+  color: #34d399; /* brighter emerald for dark backgrounds */
 }
 
 body.dark-theme .scheduler-status.error {
-  color: #fecaca;
-  background-color: rgba(185, 28, 28, 0.2);
-  border-color: rgba(248, 113, 113, 0.3);
+  color: #f87171; /* brighter red for dark backgrounds */
 }
 
 /* Dark mode compatibility updates */
