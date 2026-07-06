@@ -238,19 +238,33 @@ function setupRecruiterScheduler(modal) {
     const nameInput = modal.querySelector('#sched-name');
     const emailInput = modal.querySelector('#sched-email');
     const orgInput = modal.querySelector('#sched-org');
-    const name = nameInput ? nameInput.value : '';
-    const email = emailInput ? emailInput.value : '';
-    const org = orgInput ? orgInput.value : '';
+    const name = nameInput ? nameInput.value.trim() : '';
+    const email = emailInput ? emailInput.value.trim() : '';
+    const org = orgInput ? orgInput.value.trim() : '';
+    const rawDate = dateInput ? dateInput.value : '';
+    const rawTime = timeInput ? timeInput.value : '';
+
+    if (!name || !email || !org || !rawDate || !rawTime) {
+      if (status) {
+        status.className = 'scheduler-status error';
+        status.textContent = 'All fields are mandatory.';
+      }
+      return;
+    }
     
     const activeTypeBtn = typeSelector ? typeSelector.querySelector('.type-pill.active') : null;
     let focus = activeTypeBtn ? activeTypeBtn.getAttribute('data-type') : 'Technical';
     if (focus === 'Custom') {
       const customInput = modal.querySelector('#sched-custom-focus');
-      focus = customInput && customInput.value ? `Custom: ${customInput.value}` : 'Custom';
+      if (!customInput || !customInput.value.trim()) {
+        if (status) {
+          status.className = 'scheduler-status error';
+          status.textContent = 'All fields are mandatory.';
+        }
+        return;
+      }
+      focus = `Custom: ${customInput.value.trim()}`;
     }
-    
-    const rawDate = dateInput ? dateInput.value : '';
-    const rawTime = timeInput ? timeInput.value : '';
 
     // Format Date beautifully: "Mon, Jul 7, 2026"
     let formattedDate = rawDate;
