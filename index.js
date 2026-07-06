@@ -270,10 +270,16 @@ function setupRecruiterScheduler(modal) {
       formattedTime = `${h}:${minutes} ${ampm}`;
     }
 
-    // Generate a unique, instantly operable video meeting room link (via Jitsi Meet, which guarantees instant room creation)
-    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-    const randPart = (len) => Array.from({length: len}, () => chars[Math.floor(Math.random() * chars.length)]).join('');
-    const meetLink = `https://meet.jit.si/Daksh-Interview-${randPart(4)}-${randPart(4)}`;
+    // Clean recruiter name and company for a professional, customized Jitsi Meet URL
+    const cleanForUrl = (str) => {
+      return str.toLowerCase().trim()
+        .replace(/[^a-z0-9\s-]/g, '') // remove special characters
+        .replace(/\s+/g, '-');        // replace spaces with hyphens
+    };
+    const cleanName = cleanForUrl(name) || 'recruiter';
+    const cleanOrg = cleanForUrl(org) || 'company';
+    const randSuffix = Math.floor(100 + Math.random() * 900); // 3-digit suffix for uniqueness
+    const meetLink = `https://meet.jit.si/Daksh-Interview-${cleanName}-${cleanOrg}-${randSuffix}`;
 
     const submitBtn = form.querySelector('#scheduler-submit-btn');
     const originalBtnText = submitBtn ? submitBtn.textContent : 'Confirm Interview';
