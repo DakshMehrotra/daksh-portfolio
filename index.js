@@ -517,7 +517,7 @@ function setupDaxChatbot() {
     {
       category: "Projects Overview",
       keywords: ["projects", "project", "build", "portfolio", "creations"],
-      content: "Daksh has built several key engineering projects:\n\n1. **NETRA**: Next-gen Emergency-aware Traffic Response Architecture (YOLOv8 + GNN).\n2. **CRM Form Builder**: A React 19 / Express 5 workflow intelligence platform.\n3. **Rakshaka**: An ML-powered network intrusion detection system.\n4. **Facefunda**: A real-time multi-person mood detection ML model.\n5. **ShipStack**: A cloud-native automated DevOps CI/CD pipeline.\n6. **AI Finance**: An ML model designed to predict stock rates.\n\nAll of these are detailed on his GitHub (https://github.com/DakshMehrotra)."
+      content: "Daksh has built several key engineering projects:\n\n1. **NETRA**: Next-gen Emergency-aware Traffic Response Architecture (YOLOv8 + GNN).\n2. **CRM Form Builder**: A React 19 / Express 5 workflow intelligence platform.\n3. **Rakshaka**: An ML-powered network intrusion detection system.\n4. **Facefunda**: A real-time multi-person mood detection ML model.\n5. **ShipStack**: A cloud-native automated DevOps CI/CD pipeline.\n6. **AI Finance**: An ML model designed to predict stock rates.\n7. **CloudNova**: A full-stack cloud storage web application (Google Drive clone).\n\nAll of these are detailed on his GitHub (https://github.com/DakshMehrotra)."
     },
     {
       category: "Facefunda Project",
@@ -533,6 +533,11 @@ function setupDaxChatbot() {
       category: "AI Finance Project",
       keywords: ["ai finance", "finance", "predict", "stock", "stock rates", "rates", "ml model"],
       content: "**AI Finance** is an ML-powered financial prediction engine designed to forecast stock rates and market trends. Detailed on [GitHub](https://github.com/DakshMehrotra)."
+    },
+    {
+      category: "CloudNova Project",
+      keywords: ["cloudnova", "cloud", "storage", "drive", "google drive", "mongodb", "react 18", "typescript"],
+      content: "**CloudNova** is a full-stack, enterprise-grade cloud storage application inspired by Google Drive. Built with React 18, TypeScript, Node.js (Express), and MongoDB, it features secure JWT authentication, nested folder structures, drag-and-drop file uploads (via Multer), real-time file previews (images, PDFs, videos, audio), file starring, soft delete trash system, dynamic user storage quotas (1GB), and public shareable link generation. Detailed on [GitHub](https://github.com/DakshMehrotra/CloudNova)."
     }
   ];
 
