@@ -461,8 +461,8 @@ function setupDaxChatbot() {
     },
     {
       category: "My Trick International Internship",
-      keywords: ["my trick", "front-end", "ui", "features"],
-      content: "Daksh was a Software Intern at **My Trick International** (Jun 2025 - Jul 2025). He assisted in building custom front-end features."
+      keywords: ["my trick", "business analyst", "requirements", "modeling", "analyst"],
+      content: "Daksh was a Business Analyst Intern at **My Trick International** (Jun 2025). He assisted in requirements gathering, business process modeling, and functional specification drafting, analyzing workflows to find bottlenecks."
     },
     {
       category: "IIT Roorkee Internship",
@@ -512,12 +512,27 @@ function setupDaxChatbot() {
     {
       category: "Internships Overview",
       keywords: ["intern", "internship", "internships", "experience", "work", "job", "jobs", "employment"],
-      content: "Daksh has completed 6 engineering internships:\n\n1. **Xebia** (Project Intern, Jun 2026 - Present): Working on Agentic AI frameworks.\n2. **Groove Innovations** (Data Engineering Intern, May 2026 - Jun 2026): Developed and deployed a dynamic CRM form builder.\n3. **IIT Roorkee** (R&D Intern, May 2025 - Jun 2025): Neuromorphic computing R&D.\n4. **Innoventory Solutions** (Software Intern, Sep 2025 - Mar 2026): Testing and patent coordination.\n5. **Fouses** (Software Intern, Jul 2025 - Aug 2025): Streamlined client contracts.\n6. **My Trick International** (Software Intern, Jun 2025 - Jul 2025): Frontend UI features."
+      content: "Daksh has completed 6 engineering internships:\n\n1. **Xebia** (Project Intern, Jun 2026 - Present): Working on Agentic AI frameworks.\n2. **Groove Innovations** (Data Engineering Intern, May 2026 - Jun 2026): Developed and deployed a dynamic CRM form builder.\n3. **IIT Roorkee** (R&D Intern, May 2025 - Jun 2025): Neuromorphic computing R&D.\n4. **Innoventory Solutions** (Software Intern, Sep 2025 - Mar 2026): Testing and patent coordination.\n5. **Fouses** (Software Intern, Jul 2025 - Aug 2025): Streamlined client contracts.\n6. **My Trick International** (Business Analyst Intern, Jun 2025): Requirements gathering, process modeling, and workflow analysis."
     },
     {
       category: "Projects Overview",
       keywords: ["projects", "project", "build", "portfolio", "creations"],
-      content: "Daksh has built three main featured projects:\n\n1. **NETRA**: Next-gen Emergency-aware Traffic Response Architecture (YOLOv8 + Graph Neural Networks).\n2. **CRM Form Builder**: A React 19 / Express 5 workflow intelligence platform with OCR and drawn signatures.\n3. **Rakshaka**: An ML-powered network intrusion detection system (trained 7 models including XGBoost)."
+      content: "Daksh has built several key engineering projects:\n\n1. **NETRA**: Next-gen Emergency-aware Traffic Response Architecture (YOLOv8 + GNN).\n2. **CRM Form Builder**: A React 19 / Express 5 workflow intelligence platform.\n3. **Rakshaka**: An ML-powered network intrusion detection system.\n4. **Facefunda**: A real-time multi-person mood detection ML model.\n5. **ShipStack**: A cloud-native automated DevOps CI/CD pipeline.\n6. **AI Finance**: An ML model designed to predict stock rates.\n\nAll of these are detailed on his GitHub (https://github.com/DakshMehrotra)."
+    },
+    {
+      category: "Facefunda Project",
+      keywords: ["facefunda", "mood", "detection", "emotion", "mood detection", "face", "ml model"],
+      content: "**Facefunda** is a real-time mood detection machine learning model that can analyze and classify facial expressions/emotions for multiple people simultaneously. Detailed on [GitHub](https://github.com/DakshMehrotra)."
+    },
+    {
+      category: "ShipStack Project",
+      keywords: ["shipstack", "devops", "pipeline", "cicd", "aws", "docker", "github actions", "automated"],
+      content: "**ShipStack** is an end-to-end cloud-native DevOps CI/CD deployment pipeline. It automates testing, Docker image building/versioning, and zero-manual-intervention deployments to AWS EC2 using GitHub Actions. Detailed on [GitHub](https://github.com/DakshMehrotra)."
+    },
+    {
+      category: "AI Finance Project",
+      keywords: ["ai finance", "finance", "predict", "stock", "stock rates", "rates", "ml model"],
+      content: "**AI Finance** is an ML-powered financial prediction engine designed to forecast stock rates and market trends. Detailed on [GitHub](https://github.com/DakshMehrotra)."
     }
   ];
 
