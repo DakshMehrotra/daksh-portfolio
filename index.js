@@ -321,11 +321,13 @@ function setupRecruiterScheduler(modal) {
         "Selected Date": formattedDate,
         "Selected Time Slot": formattedTime,
         "Video Meeting Link": meetLink,
+        "email": email,
         "_subject": `[INTERVIEW BOOKING] ${name} (${org})`,
         "_template": "box",
         "_captcha": "false",
         "_cc": email,
-        "_replyto": email
+        "_replyto": email,
+        "_autoresponse": `Thank you for scheduling an interview with Daksh! The meeting is scheduled for ${formattedDate} at ${formattedTime}. Please use the following video meeting link to join: ${meetLink}`
       })
     })
     .then(response => {
