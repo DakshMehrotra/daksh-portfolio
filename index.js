@@ -90,9 +90,9 @@ function setupRecruiterModal() {
 
   const openModal = () => {
     modal.showModal();
-    // Focus first link inside modal for accessibility
+    // Focus first link inside modal for accessibility (removed to prevent blue highlight)
     const firstLink = modal.querySelector('#trigger-scheduler');
-    if (firstLink) firstLink.focus();
+    // if (firstLink) firstLink.focus();
   };
 
   const closeModal = () => {
