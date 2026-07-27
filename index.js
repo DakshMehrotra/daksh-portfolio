@@ -489,7 +489,7 @@ function setupDaxChatbot() {
     {
       category: "Education",
       keywords: ["education", "college", "upes", "cgpa", "grade", "academics", "university", "b.tech", "cse", "cloud computing"],
-      content: "Daksh is pursuing a B.Tech in Computer Science and Engineering (with Cloud Computing specialization) at **UPES Dehradun**. He has an **8.7 CGPA** (Aug 2023 - Present)."
+      content: "Daksh is pursuing a B.Tech in Computer Science and Engineering (with Cloud Computing specialization) at **UPES Dehradun**. He has an **8.75 CGPA** (Aug 2023 - Present)."
     },
     {
       category: "Skills",
