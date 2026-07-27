@@ -2,7 +2,7 @@
 
 Welcome to the repository for my professional portfolio website! This project showcases my engineering background, featured builds, technical skill stack, certifications, and leadership milestones.
 
-**Live Site**: Deployed and accessible on Vercel/GitHub Pages (or open locally).
+**Live Site**: Deployed and accessible on Vercel -> https://daksh-mehrotra.vercel.app
 
 ---
 
@@ -45,10 +45,10 @@ Since the portfolio is built on a clean, modern, static vanilla stack, you do no
    *(Alternatively, use `npx serve` or Live Server in VS Code).*
 
 3. **View in Browser**:
-   Open [http://localhost:8080](http://localhost:8080) to inspect the website.
+   Open [https://daksh-mehrotra.vercel.app) to inspect the website.
 
 ---
 
-## 📄 License & Copyright
+## License & Copyright
 
 &copy; 2026 Daksh Mehrotra. All rights reserved. Created and configured for modern web standards.
