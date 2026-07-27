@@ -45,7 +45,7 @@ Since the portfolio is built on a clean, modern, static vanilla stack, you do no
    *(Alternatively, use `npx serve` or Live Server in VS Code).*
 
 3. **View in Browser**:
-   Open [https://daksh-mehrotra.vercel.app) to inspect the website.
+   Open (https://daksh-mehrotra.vercel.app) to inspect the website.
 
 ---
 
